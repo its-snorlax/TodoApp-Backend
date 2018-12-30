@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "user_data")
@@ -21,6 +22,12 @@ public class User {
 
     @Column(name = "password")
     private String password;
+
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            mappedBy = "user")
+    private List<UserTodo> userTodos;
 
     public User(String username, String password) {
         this.username = username;

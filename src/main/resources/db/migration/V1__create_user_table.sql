@@ -1,5 +1,5 @@
 CREATE TABLE user_data (
- id int PRIMARY KEY,
+ id int PRIMARY KEY AUTO_INCREMENT,
  username  VARCHAR(100) NOT NULL,
  password VARCHAR(100) NOT NULL
 );
