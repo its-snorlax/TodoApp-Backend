@@ -38,7 +38,6 @@ public class JWTAuthenticationFilter extends AbstractAuthenticationProcessingFil
         try {
             UserInfo creds = new ObjectMapper()
                     .readValue(request.getInputStream(), UserInfo.class);
-            System.out.println(creds);
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(creds.getUsername(), creds.getPassword(), new ArrayList<>()));
         } catch (IOException e) {
