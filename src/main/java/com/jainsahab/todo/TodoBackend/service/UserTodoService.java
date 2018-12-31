@@ -9,7 +9,9 @@ import com.jainsahab.todo.TodoBackend.model.UserTodo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -30,5 +32,15 @@ public class UserTodoService {
     private String uuid() {
         UUID uuid = Generators.timeBasedGenerator().generate();
         return uuid.toString();
+    }
+
+    public ArrayList<UserTodoDTO> getTodosForUser(String userName) {
+        ArrayList<UserTodoDTO> userTodoDTOS = new ArrayList<>();
+        User user= userRepository.findByUsername(userName);
+        List<UserTodo> userTodos = userTodoRepository.findByUser(user);
+        for (UserTodo userTodo : userTodos){
+            userTodoDTOS.add(new UserTodoDTO(userTodo));
+        }
+        return userTodoDTOS;
     }
 }
