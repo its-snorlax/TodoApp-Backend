@@ -38,4 +38,10 @@ public class UserTodoController {
         ArrayList<UserTodoDTO> todosForUser = userTodoService.getTodosForUser(userName);
         return ResponseEntity.ok(todosForUser);
     }
+
+    @DeleteMapping(value = "/Todo/{requestId}")
+    public ResponseEntity<Void> deleteTodo(@PathVariable String requestId){
+        userTodoService.deleteTodo(requestId);
+        return ResponseEntity.noContent().build();
+    }
 }

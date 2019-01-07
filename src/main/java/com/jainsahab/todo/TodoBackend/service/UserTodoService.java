@@ -8,6 +8,7 @@ import com.jainsahab.todo.TodoBackend.model.User;
 import com.jainsahab.todo.TodoBackend.model.UserTodo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,5 +43,11 @@ public class UserTodoService {
             userTodoDTOS.add(new UserTodoDTO(userTodo));
         }
         return userTodoDTOS;
+    }
+
+    @Transactional
+    public void deleteTodo(String requestId) {
+        System.out.print(requestId);
+        userTodoRepository.deleteByRequestId(requestId);
     }
 }

@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface UserTodoRepository extends JpaRepository<UserTodo,Integer> {
     List<UserTodo> findByUser(User user);
+    void deleteByRequestId(String requestId);
 }
